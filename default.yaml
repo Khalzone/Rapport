@@ -10,10 +10,10 @@ input-files:
 template: eisvogel
 
 metadata:
-  title: "Rapport de projet"
-  subtitle: "Rapport de projet pour la licence professionnelle ADSILLH"
-  author: Yorick Barbanneau, Florian "Pizzacoca" Lassenay, Axel Danguin, Maxime Oçafrain
-  date: "20-12-2019"
+  title: "Rapport de projet Licence ADSILLH"
+  subtitle: "Khal, par le groupe Khalzone"
+  author: Yorick Barbanneau, Simon Crespeau, Florian Lassenay, Axel Danguin, Maxime Oçafrain
+  date: "mars 2020"
   mainfont: calibri
   fontsize: 12pt
   subject: "Rapport"

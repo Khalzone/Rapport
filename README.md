@@ -3,4 +3,4 @@ Rapport de projet d'ADSILLH
 
 ### Generation
 
-pandoc --default = default.yaml
+pandoc --defaults=default.yaml
