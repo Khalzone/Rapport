@@ -139,6 +139,20 @@ def redirect_menu_bar(session=session):
     bar = liste_bar()
     return render_template("menu_bar.html", session=session, bar=bar)
 ```
+\pagebreak
+
+### Issue 705 
+
+Changement des couleurs de ikhal à travers le fichier de config
+
+**https://github.com/pimutils/khal/issues/705**
+
+Les schémas de couleurs ne donnent pas entièrement satisfaction. 
+Les paramètres de couleur codés en dur dans les configurations par défaut sont peu compatbiles
+avec le réglage colorimétrique de certains terminaux 
+et il n'existe pas de possibilité de changer ces couleurs sans modifier les sources.
+L'ajout de paramètres de couleur dans le fichier de configuration permettrait de résoudre ce point.
+
 
 \pagebreak
 
@@ -227,18 +241,16 @@ déc.  25 26 27 28 29 30  1     14:00-18:00 Rendez-vous Projet
       23 24 25 26 27 28 29     
 ```
 
-\pagebreak
 
+\pagebreak
 
 ## Annexe C
 
 ### Issue 705 
 
-Changement des couleurs de ikhal à travers le fichier de config
+Changement des couleurs dans ikhal à travers le fichier de config
 
-**https://github.com/pimutils/khal/issues/705**
-
-Les schémas de couleurs ne donnent pas satisfaction.
+Le mainteneur a précisé la demande 
 
 > Colors color theme should be changeable through the color theme.
 > This should be easily doable by literal_evaling a string and adding it to
