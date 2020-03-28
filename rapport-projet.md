@@ -172,7 +172,7 @@ _Une documentation plus propre peut etre une solution_
 
 ## Origine
 
-L'issue 705 a été créée par le mainteneur pour répondre de manière cohérente à deux issues qui concernent le réglage des couleurs dans ikhal.
+L'issue 705 a été créée par le mainteneur pour plusieurs répondre de manière cohérente à deux issues qui concernent le réglage des couleurs dans ikhal.
 
 ### issue 396 
 
@@ -227,7 +227,6 @@ Une pull request documenté a été réalisée avec cette proposition.
 Il nous semble pertinent de prolonger la résolution de l'issue #705 par la #633.
 Celle-ci implique la vérification potentielle de soixante valeurs de couleurs. 
 Le parcours de fichiers par les méthodes de cérification prendra alors tout son sens.
-
 
 
 
