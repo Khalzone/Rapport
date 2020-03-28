@@ -143,6 +143,70 @@ def redirect_menu_bar(session=session):
 
 ### Issue 705 
 
+
+Changement des couleurs de ikhal à travers le fichier de config
+---------------------------------------------------------------
+
+**https://github.com/pimutils/khal/issues/705**
+
+La gestion des couleurs est ne donne pas entièrement satisfaction. Un lot d'issues concerne des retours d'expériences de portions d'interface illisibles.
+
+## Le souhait du mainteneur
+
+> Colors color theme should be changeable through the color theme.
+> This should be easily doable by literal_evaling a string and adding it to
+the selected color theme (as urwid iterates over the palette list and later
+attributes overwrite earlier ones with the same name).
+> Proper documentation might be an issue.
+
+## Traduction
+
+_Les couleurs du theme couleur devraient etre modifiables dans/au travers
+du thème de couleur._
+_Ceci devrait etre facilement réalisable en plaçant une variable de type
+et en l'ajoutant dans le thème désiré._
+_(comme urwid itere au-dessus de la liste de la palette et après attribue
+par-dessus les précédentes avec le même nom)_
+_Une documentation plus propre peut etre une solution_
+
+## Origine
+
+L'issue 705 permettrait de résoudre ou de permettre la résolution de deux autres issues liées.
+
+### issue 396 
+
+De l'issue 396 il ressort le souhait de pouvoir choisir un thème via le fichier de configuration.
+https://github.com/pimutils/khal/issues/395
+
+### issue 633
+
+L'issue 633 signale l'impossiblité de lire certaines partie de l'interface graphique d'ikhal, du fait des configurations graphiques des terminaux.
+![khal dans pimutils](img/pimutils.svg)
+![issue 633](img/633a.png)
+![issue 633](img/633b.png)
+
+Ces deux issues étant liées, le mainteneur a ouvert l'issue 705 pour avancer sur le sujet et prendre en compte ces demandes.
+
+## Contribution 
+
+L'ajout d'un paramètre modifiable par l'utilisateur via l'enrichissement du fichier config est déja une fonctionnalité existante pour d'autres paramètres (chemin des calendriers, format de date ...).
+Il s'agit donc de suivre la méthode déja existante au sein du code pour réaliser le travail et c'est pour cette raison que l'issue a été étiquetée "débutant"
+
+Aux options valides du fichier de configuration est associé un dictionnaire.
+Seules les informations valides sont récupérées et traitées. (un message d'erreur s'affiche sinon)
+Enfin, les valeurs récupérées sont vérifiées par une fonction de la bibliothèque Validator.
+
+Le dictionnaire associé au fichier de configuration est enrichi d'un champ theme 
+Le mot theme est associé à une option aux valeurs possibles définies, aussi la fonction is_theme est ajoutée à la bibliothèque utils.py du projet khal afin de vérifier que l'utilisateur a renseigné des valeurs correctes.
+
+La documentation du site a également été mise à jour.
+
+## Nota
+
+Les couleurs valides dans le fichier khal.spec sont codées 'en dur' dans les fonctions de vérification. 
+
+
+
 Changement des couleurs de ikhal à travers le fichier de config
 
 **https://github.com/pimutils/khal/issues/705**
@@ -248,6 +312,7 @@ déc.  25 26 27 28 29 30  1     14:00-18:00 Rendez-vous Projet
 
 ### Issue 705 
 
+
 Changement des couleurs dans ikhal à travers le fichier de config
 
 Le mainteneur a précisé la demande 
@@ -266,6 +331,9 @@ _Ceci devrait etre facilement réalisable en réalisant un literal__eval sur une
 _(comme urwid itere au-dessus de la liste de la palette et après attribue
 par-dessus les précédentes avec le même nom)_
 _Une documentation plus propre peut etre une solution_
+
+
+
 
 
 ### Documentation
