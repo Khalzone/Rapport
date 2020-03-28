@@ -262,8 +262,7 @@ attributes overwrite earlier ones with the same name).
 
 _Les couleurs du theme couleur devraient etre modifiables dans/au travers
 du thème de couleur._
-_Ceci devrait etre facilement réalisable en plaçant une variable de type
-et en l'ajoutant dans le thème désiré._
+_Ceci devrait etre facilement réalisable en réalisant un literal__eval sur une variable ajoutée dans un thème.
 _(comme urwid itere au-dessus de la liste de la palette et après attribue
 par-dessus les précédentes avec le même nom)_
 _Une documentation plus propre peut etre une solution_
