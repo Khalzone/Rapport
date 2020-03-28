@@ -149,7 +149,8 @@ Changement des couleurs de ikhal à travers le fichier de config
 
 **https://github.com/pimutils/khal/issues/705**
 
-La gestion des couleurs est ne donne pas entièrement satisfaction. Un lot d'issues concerne des retours d'expériences de portions d'interface illisibles.
+La gestion des couleurs est ne donne pas entièrement satisfaction. 
+Un lot d'issues concerne des retours d'expériences de portions d'interface illisibles.
 
 ## Le souhait du mainteneur
 
@@ -159,7 +160,7 @@ the selected color theme (as urwid iterates over the palette list and later
 attributes overwrite earlier ones with the same name).
 > Proper documentation might be an issue.
 
-## Traduction
+### Traduction
 
 _Les couleurs du theme couleur devraient etre modifiables dans/au travers
 du thème de couleur._
@@ -171,7 +172,7 @@ _Une documentation plus propre peut etre une solution_
 
 ## Origine
 
-L'issue 705 permettrait de résoudre ou de permettre la résolution de deux autres issues liées.
+L'issue 705 a été créée par le mainteneur pour répondre de manière cohérente à deux issues qui concernent le réglage des couleurs dans ikhal.
 
 ### issue 396 
 
@@ -181,41 +182,53 @@ https://github.com/pimutils/khal/issues/395
 ### issue 633
 
 L'issue 633 signale l'impossiblité de lire certaines partie de l'interface graphique d'ikhal, du fait des configurations graphiques des terminaux.
-![khal dans pimutils](img/pimutils.svg)
 ![issue 633](img/633a.png)
 ![issue 633](img/633b.png)
 
-Ces deux issues étant liées, le mainteneur a ouvert l'issue 705 pour avancer sur le sujet et prendre en compte ces demandes.
+## Etude du code
 
-## Contribution 
+Actuellement les deux thèmes possibles sont appelés par khal.spec.
+Le choix d'un thème se fait uniquement en modifiant ce fichier.
+Ces thèmes sont détaillés par une trentaine de  variables aux valeurs codées en dur dans le fichier colors.py.
+
+La configuration est construite sur la base de dictionnaires peuplés lors de l'appel de la méthode get_config
+Lorsque les fichiers de configuration sont trouvés ils sont parcourus et le fichier khal.spec est utilisé pour peupler le dictionnaire user_config.
+La méthode get_extra_values identifie chaque intitulé de section et va chercher les items correspondants.
+Dans notre cas ce sont des tuples précisant la couleur du fond, la couleur de la police et éventuellement le formatage de police à appliquer pour le champ concerné.
+Une fois le dictionnaire renseigné, les valeurs dont les types sont précisées sont vérifiées.
+Le thème défini est alors parcouru et la trentaine de paramètres qui sont autant de tuples définissant les couleurs des champs viennent enrichir l'objet obj.ctx
+
+A ce stade nous pouvons réaliser l'implémentation du choix du thème
+
+### Variable theme
+
+La section [view]theme existe déja et nous souhaitons l'alimenter via le fichier de configuration.
+Comme toute information renseignée par l'utilisateur celle-ci doit être vérifiée.
+C'est pour cette raison que le dictionnaire de vérification fdict est enrichi de cette section à vérifier.
+
+## Contribution
 
 L'ajout d'un paramètre modifiable par l'utilisateur via l'enrichissement du fichier config est déja une fonctionnalité existante pour d'autres paramètres (chemin des calendriers, format de date ...).
-Il s'agit donc de suivre la méthode déja existante au sein du code pour réaliser le travail et c'est pour cette raison que l'issue a été étiquetée "débutant"
+Il s'agit donc de suivre la méthode déja existante au sein du code pour réaliser le travail.
+C'est pour cette raison que l'issue a été étiquetée "débutant".
 
-Aux options valides du fichier de configuration est associé un dictionnaire.
-Seules les informations valides sont récupérées et traitées. (un message d'erreur s'affiche sinon)
-Enfin, les valeurs récupérées sont vérifiées par une fonction de la bibliothèque Validator.
+### Méthode is_theme
 
-Le dictionnaire associé au fichier de configuration est enrichi d'un champ theme 
-Le mot theme est associé à une option aux valeurs possibles définies, aussi la fonction is_theme est ajoutée à la bibliothèque utils.py du projet khal afin de vérifier que l'utilisateur a renseigné des valeurs correctes.
+Cette méthode est appelée par la méthode config_checks qui parcours l'ensemble des éléments à vérifier.
+Dans cette méthode nous avons écrit en dur les thèmes valides, tout comme les autres méthodes de validation du fichier utyls.py.
+L'utilisation d'un méthode de parcours du fichier de colors.py semble une amélioration interressante à proposer.
 
-La documentation du site a également été mise à jour.
+## Conclusion
 
-## Nota
+Une pull request documenté a été réalisée avec cette proposition.
 
-Les couleurs valides dans le fichier khal.spec sont codées 'en dur' dans les fonctions de vérification. 
+### Nota
+
+Il nous semble pertinent de prolonger la résolution de l'issue #705 par la #633.
+Celle-ci implique la vérification potentielle de soixante valeurs de couleurs. 
+Le parcours de fichiers par les méthodes de cérification prendra alors tout son sens.
 
 
-
-Changement des couleurs de ikhal à travers le fichier de config
-
-**https://github.com/pimutils/khal/issues/705**
-
-Les schémas de couleurs ne donnent pas entièrement satisfaction. 
-Les paramètres de couleur codés en dur dans les configurations par défaut sont peu compatbiles
-avec le réglage colorimétrique de certains terminaux 
-et il n'existe pas de possibilité de changer ces couleurs sans modifier les sources.
-L'ajout de paramètres de couleur dans le fichier de configuration permettrait de résoudre ce point.
 
 
 \pagebreak
