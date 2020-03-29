@@ -1,0 +1,510 @@
+Soutenance Khal
+
+Support définitif en cours : https://github.com/Khalzone/Rapport
+
+Objectifs
+
+    Utiliser les outils de travail collaboratif. Travailler en équipe. S’insérer dans une communauté. 
+
+    Contribuer à un projet.
+
+    Savoir rédiger un rapport d’intervention et une documentation technique.
+
+
+Philosophie de la pres :
+    
+    Plus que khal c'est l'équipe khalzone qu'on doit "vendre". Manifestement ceci fait partie des attendus : https://youtu.be/_VB_b4dSmzE?t=2 
+    
+    pitch de 30 secondes en 6 points (comme a fait Yorick en fait qui doit etre abonné à cette chaine https://www.youtube.com/watch?v=qy-ck1sxxYU )
+
+
+    1 A Quoi Khalzone a servi 
+
+    contribution à une solution open source sur github
+
+     les bénéfices qu'on a apporté)             'weeknumbers': weeknumber_option,
+
+
+    2 Avec quoi ? 
+
+    Du code, des PR
+
+    Un mainteneur
+
+
+    3 A qui : a qui on a servi
+
+    Aux utilisateurs, aux mainteneurs  (idéalement que les profs se reconnaissent un peu)
+
+    quelques chiffres clefs
+
+
+    4 Qui on est et comment on est organisés
+
+    Nos roles respectifs.
+
+    Yorick a été notre principal excavateur des grandes lignes de la structure du code.
+
+    Simon a travaillé sur les tests automatiques et les bugs rencontrés autour de ce sujet
+
+    Axel ayant aussi des compétences en anglais nous avons put communiquer de manière plus assurée avec la communauté
+
+    Maxime s'est transformé en grain fin 
+
+    Florian cherche encore la sortie
+
+    nos différentes compétences
+
+
+   5 Choix du projet
+
+    comment ca s'est passé
+
+    étapes avant la décision
+
+
+    6 Comment 
+
+    méthodes et délais
+
+
+communication avec la communauté 
+
+( les points listés par Simon, même si Florian a fait quelque chose de similaire mais c'est pou garder une trace )
+
+    présentation du logiciel ( + écosystème )
+
+    présentation de la communauté ( comment elle communique / est organisée)
+
+    présentation de l'équipe khalzone ( vite fait )
+
+    travaux / issues effectués - points durs / positifs
+
+    où nous en sommes à l'heure actuelle
+
+    le futur
+
+
+
+Points dur rencontrés
+
+Gestion des péripéties
+
+Pas toujours évident de gérer les "péripéties" du projet. Exemple: on travaille sur une correction de bug / implémentation, puis
+le projet ne fonctionne plus dans son ensemble. Ca peut être du à:
+
+    erreurs apparues dans la suite de tests
+
+    changement dans une des bibliothèques utilisée qui génère des erreurs
+
+    ...
+
+
+On ne peut pas rester fixé sur son bout de code. Le projet est vivant donc il faut savoir lever le nez pour parfois résoudre d'autres problèmes
+qui nous bloquent pour l'avancée cohérente du code sur lequel on est en train de travailler.
+Cependant, il n'est pas toujours évident de faire les bons choix sur "quand faire quoi", et il peut en résulter une "perte de temps" significative.
+
+Blabla Simon
+https://tube.aquilenet.fr/videos/watch/abaf13b4-eeb4-4fba-ae26-73476ba789f6
+Diapo1
+
+    Présentation du travail de l'année autour du projet khal
+
+
+Diapo 2
+
+    RFC 5545: définit le format iCalendar pour l'échange de données de type agenda et évènement
+
+
+Diapo 3
+
+    Pas un trop gros projet pour nous
+
+    Tout de même assez actif avec des contributions régulières
+
+    Bon chois pour découvrir l'implication dans la communauté d'un logiciel libre sans être un pur développeur
+
+
+Diapo 4: PIMUTILS
+
+    Regroupement de logiciels / déveoppeurs
+
+    Proposent des outils de gestion de données personnelles
+
+
+Diapo 5
+
+    Fonctionnement spécifique de khal dans la chaîne
+
+    vdirsyncer synchronise avec des serveurs distants
+
+    khal lit et édite les fichiers dans les dossiers de vdirsyncer
+
+    khal manipule les données dans une base SQLite pour des soucis de performances
+
+
+Démo
+
+A checker
+
+    docker lancé
+
+    firefox profil khal ouvert
+
+    calendriers vides local et distants
+
+
+Déroulement
+
+    localhost:8080
+
+    khal printcalendars
+
+    khal calendar
+
+    khal new
+
+    vdirsyncer sync
+
+    localhost:8080
+
+    créer nouvel évement dans l'autre agenda
+
+    vdirsyncer sync + khal calendar
+
+    ikhal
+
+
+
+
+Nous allons vous présenter le travaill qui a été effectué durant l'année au sein du projet autour du logiciel  khal.
+Khal c'est un logiciel d'agenda en ligne de commande qui possède également une interface graphique en mode terminal.
+Il s'appuie sur la RFC5545 qui défini le format icalendar pour l'échange d'agendas et d'évènements.
+Il est écrit entièrement en python.
+Le projet a été créé en aout 2014 et il a plus de 2000 commits à son actif ainsi que 58 contributeurs à l'heure actuelle.
+On l'a choisi par ce que c'était pas un projet trop gros tout en restant relativement actif : il y a des contributions réguilièrement. 
+Il s'avère que c'était un bon choix pour nous pour découvrir l'implication dans un projet de logiciel libre.
+
+Kal s'incrit dans un écosystème qui s'appelle pimutils qui nous proposent des outils de gestion de données personnelles de type agenda, liste de contact et liste de taches 
+Khal pour les calendriers, todoman pour les listes de tâches et Vdirsyncer.
+Dans cet écosysteme particulierqui , vdirsyncer va se charger , lui, de synchroniser avec des serveurs distants avec tout type de serveur distant de type khaldav, google ou meme icloud pour l'environnement apple 
+
+Là on observe un peu plus en détail le fonctionnement de khal au sein de cet écosystème.
+On voit que vdirsyncer va donc se synchroniser à distance avec le serveur pour inscrire ses données dans des fichiers ics pour les agendas et pour les contacts et khal lui va se charger de lire et écrire dans ces mêmes fichiers. 
+Khal utilise en interne une base de données sql light pour des raison de performances.
+
+Pour vous montrer rapidement comment ca fonctionne on a une 'tite instance de nextcloud qui tourne avec le plugin agenda.
+Si on va dessus on a deux agendas avec quelques évènements
+Les configurations onté déja été créées et j'utilise vdirsyncer pour lancer la synchronisation qui me demande le mot de passe
+Il synchronise -il n'y a rien mais vdirsyner repère bien  les deux agendas - 
+En listant avec khal in constate que l'agenda nous affiche les évènements.
+On récupère également les deux agendas dans khal 
+Donc si je veux créer un évènement , par la commande khal je sélectionne l'agenda dans lequel je veux inscrire l'évènement, je lui renseigne la date ainsi que l'heure pour finir par son nom.
+Et c'est la fonction lhal news qui me permet de créer un nouvel évènement.
+En mars par exemple, voila, c'est bien là
+
+Je synchronise maintenant avec vdirsyncer.
+Je reviens sur mon nextcloud, je réactualise et on voit bien l'evènement créé. 
+
+
+---- ikhal pour un autre passage ? (les couleurs ? )
+Ikhal c'est donc cette fameuse interface graphique en mode terminal qui est un peu plus complète, on peut se balader avec les flèches, on peut lister les détails sur un évènement et on peut également en créer des nouveaux.
+
+Retours Habib
+
+Montrer le "paysage" autour de khal (site web, github, etc.)
+Parler de Geier et parler de la communauté
+Comment on s'est intégré (yorick?)
+Bon choix pour découvrir le libre -> Dire plus pourquoi
+2000 commits -> OK mais montrer les commits sur la durée
+
+A rajouter
+
+Présenter la licence
+
+Blabla Maxime et Axel
+
+
+Le mode interactif de Khal
+Khal possède un mode interactif : Ikhal. 
+L'enregistrement des evenements modifiés ou créés ne se fait que qu'avec la fermeture d'ikhal.
+Plusieurs demandes ont été faites pour qu'il soit possible d'enregistrer sans fermer ikhal.
+ce sont les issues 866, 870, 536, et 726 (413) dont certaines font référence à mutt, ou il est possible d'enregistrer les changements en appuyant sur la touche "$".
+ l'implémentation d'une fonction qui permettrait d'outrepasser cette limitation. 
+
+Analyse de cette requete 
+Ikhal fait ...
+
+ pour approcher cette requête, il faudra analyser le fonctionnement d'Ikhal, repérer les appels effectués à la fermeture pour enregistrer les fichiers, ainsi que trouver le moyen de rafraîchir manuellement la vue du calendrier.
+ --
+ historique sur le dépot Khal
+ 
+ première mention de la demande d'intégration : rapport 416 (mai 2016)
+
+Geier - >#536 nov 2016 fermée sans solution un an après 
+ 
+ #726 Octobre - > une autre, fermée comme dupe de la 536 (issue ouverte par petr fischer)
+ 
+ 866 (petr fischer) 3 may 2019 réouvre le problème, (approuvé par geier qui suggère de mimiquer le fonctionnement de mutt ($ pour sauvegarder les changements sur le disque)) toujours ouverte à ce jour. 
+ 
+ 870 - duplicate of 866 - closed
+ 
+ --
+Parmi les choix proposés par Geier nous avons retenu l'appui sur la touche $ (comme pour Mutt) afin de valider la suppression des évènements tagués. 
+Nous avons par conséquent ajouté une touche dans le fichier de configuration khal.spec sous la partie [keybindings], touche de configuration que nous avons appelé "cleanup" ( en référence à la fonction du même nom qui
+fait la suppression des evenements marqués pour suppression et que nous appellons lors de l'appui de cette touche. 
+
+Fichier settings/khal.spec
+```
+#cleanup deleted event
+cleanup = force_list(default=list('$'))
+```
+
+Méthode "keypress" pour définir les binding :
+```
+def keypress(self, size, key):
+        prev_shown = self._eventshown
+        self._eventshown = False
+        self.clear_event_view()
+        if key in self._conf['keybindings']['new']:
+            self.new(self.focus_date, None)
+            key = None
+        elif key in self._conf['keybindings']['cleanup']:
+            self.pane.cleanup(None)
+            key = None
+        [...]
+```
+
+Méthode self.pane.cleanup(None) dans le fichier ui/__init__.py :
+```
+def cleanup(self, data):
+        """delete all events marked for deletion"""
+        for part in self._deleted[ALL]:
+            account, href, etag = part.split('\n', 2)
+            self.collection.delete(href, etag, account)
+        for part, rec_id in self._deleted[INSTANCES]:
+            account, href, etag = part.split('\n', 2)
+            event = self.collection.get_event(href, account)
+            event.delete_instance(rec_id)
+            self.collection.update(event)
+```
+
+La suppression des evenement se fait bien, cependant le seul problème qui persiste est le rafraichissement de l'écran les evenements marqués pour suppression sont toujours affichés sur l'écran.
+
+----
+Yes merci mec
+
+Bah de rien
+
+Non franchement c'est sympa merci
+
+Je t'en prie
+
+\[T]/
+
+
+Nous nous sommes aussi penché sur une demande d'ajout de fonctionnalité pour Ikhal.
+Lorsqu'ikhal fonctionne les  changements, comme les suppressions, 
+ne sont pas enregistrées sur le disque dur avant qu'on le ferme.
+
+Cette limitation est un problème, pour les utilisateurs qui utilisent Ikhal sans en sortir, parfois pendant plusieurs jours d'affilé.
+
+Cette demande, remonte à 2016, et est passé par plus de 5 "issues" sur le dépot khal.
+Geier en a lui même ouvert, en 2016, mais l'a fermée un an après, sans que personne n'ai proposé de solution.
+ ce qui, mise à part quelques duplicats, 
+nous amène à la demande actuelle, numéro 866, ouverte par un contributeur régulier, mi 2019
+à laquelle geier à répondu en donnant quelques pistes.
+
+il propose, nottament, de mimiquer le fonctionnement de mutt (le client mail) en enregistrant les changements sur le disque dur, à la pression d'une touche, ici, $
+
+C'est le choix sur lequel nous nous sommes orienté,
+
+Pour répondre à ce problème, nous avons défini un contrôle dans le fichier Khal.spec, qu'on a appellé "cleanup" qui correspond à la touche $  
+nous avons choisi son nom en référence à la fonction homonyme qui elle, s'occupe d'enregistrer les changements.
+
+cette fonction, est à l'origine uniquement appelée à la fermeture d'Ikhal (d'où son nom, elle fait le ménage).
+Grace au nouveau contrôle, cette fonction peut être appellée à tout moment.
+
+Dans l'état, la suppression des évenements marqués pour suppression se fait, 
+les changements sont effectués sur le disque dur sans problème,
+mais il reste à rafraichir l'affichage de l'écran, puisque les éléments à supprimer y sont toujours affichés.
+
+quelques pistes pour le rafraichissement : il y a une fonction update qui semble intéressante , mais cela nécéssiterais peut être de modifier la fonction cleanup.
+
+(durée : à peut près deux minutes)
+
+Issue 809
+Etude du fonctionnement de l'affichage
+
+Le but étant de modifier l'affichage, dans khal tout ce qui est realtif à l'affichage est géré dans le fichier calendar_display.py. 
+Plus spécifiquement la modifciation de l'affichage des dates, ou plutôt la création d'un liste de jours dans une variable semaine, est géré grâce à la méthode str_week.
+Cette fonction va créer une liste de jours day correspondant à une semaine. C'est donc ici qu'est formaté l'affichage des jours.
+
+Par défaut khal ajoute manuellement un espace devant les chiffres pour des raisons d'affichages plus propre grâce à la méhode python rjust().
+
+La page de documentation de la méthode rjsut() nous indique que par défaut elle complète la chaine de caratères par des espaces.
+Cependant nous pouvons y passer un second paramètre pour définir une chaine de caractères spécifique afin de combler le vide pour la chaine de caractère originale.
+
+Résolution du problème 
+
+Dans le cas présent il est intéressant de noter que la chaine de caractère fait 2 caractères (pour des jours allant de '1' à '31') et pour répondre à la problèmatique de l'issue
+il faudrait remplacer l'espace, ajouté par défaut, par un '0'. Ainsi les chiffres de '1' à '9' seraient de la forme '01' à '09'. 
+
+Cependant seulement rajouter un 0 dans le code en dur n'est pas une solution. Pour faire correspondre notre solution à Khal nous avons rajouter une ligne de configuration
+dans le fichier settings/khal.spec : ` date_format_view = string(default='0') ` sous la [locale]. On récuperera la valeur en argument puis on la passe en second paramètre
+de la méthode rjust().
+
+Phase de test
+
+Parler des tests ou pas ?  To do or not to do, that is the question.
+
+Blabla  Florian
+
+Diapo 1 khal > ikhal
+Khal peut donc également fonctionner en mode graphique, plus précisément en Interface par Terminal, un TUI, terminal-based user interface.
+La gestion des couleurs de cette interface pose parfois problème d'ou des issues et notemment l'issue 705 déposée par le mainteneur.
+Nous allons étudier brièvement le fonctionnement de la gestion des couleurs du mode graphique d'Ikhal et expliquer pourquoi le mainteneur a lui-même déposé une issue.
+
+Diapo 2 Khal > urwid > ikhal
+Pour afficher l'interface graphique et les couleurs khal fait appel à urwid, une librairie python sous licence LGPL.
+
+Diapo 3 fleche khal > urwid
+La gestion des couleurs passe par la transmission de khal à Urwid de codes 16 couleurs.
+
+Diapo 4 khal - vdirsyncer
+Actuellement La modification des couleurs n'est pas possible sans modifier le code source de khal
+... Alors que la gestion des couleurs de calendriers est possible via la configuration de Vdrisyncer.
+C'est un premier souhait exprimé dans l'issue #705 et qui vient de l'issue -plus ancienne - #395.
+
+Diapo 5 fichier de conf colors.py et khal.spec
+Pour ce faire nous allons nous interresser à la gestion des couleurs au sein de khal.
+Actuellement les thèmes et les couleurs sont codées en dur dans les fichiers khal.spec et colors.py.
+
+Diapo 6  issue #633  
+Cela n'empèche pas des comportements variables voire non désirés. L'issue #633 signale également des inconstances dans l'affichage des couleurs. 
+En effet c'est dut au fait que chaque utilisateur a la main sur sa propre colorimétrie de terminal,
+
+Diapos 7 et 8
+Voici deux affichages différents avec une même installation de khal. C'est dut aux modifications de l'environnement graphique utilisateur
+
+
+Diapo 9 urwid - réglages
+Ceci est dut à la gestion des codes 16 couleurs par urwid.
+Celui-ci se réfère aux réglages de la configuration de  l'utilisateur pour afficher les couleurs.
+
+Diapo 10 (256 couleurs)
+Une solution serait de passer des codes 256 couleurs à urwid qui alors affiche directement les couleurs mais la compatibilité avec les configurations 16 couleurs serait perdue.
+khal sait gérer ces codes
+
+Diapo 11 dictionnaire
+L'execution de khal se contruit autour d'un dictionnaire qui contient ent autres les informations de configuration de l'utilisateur et de vdisyncer.
+
+Diapo 12 dico > khal
+Actuellement le dictionnaire se réfère au fichier khal.spec 
+
+Diapo 13 dico > colors.py
+Lorsque le dictionnaire connait le nom du thème il se réfère au fichier colors.py pour récupérer les noms et les variables des variables de couleur.
+
+Dico 14 khal issue en attente
+Avec l'issue #705 la gestion du theme de couleur reprend la philosophie actuelle appliquée avec la configuration de vdirsyncer.
+
+L'amélioration possible après l'issue #705 évoquée par le mainteneur est la définition des couleurs par le fichier de configuration.
+Cet fonctionnalité qui est presque similaire à la récupération du nom du thème requiert toutefois une démarche différente en ce qui concerne la vérification des données entrées par l'utilisateur.
+Avec le thème les valeurs acceptées par la méthode de vérification sont codées en dur mais c'est difficilement envisageable avec leur contenu car chaque thème renseigne 30 tuples de 2 à 3 valeurs.  
+Pouvant prendre des  valeurs de code 16 couleur, 256 couleurs voire 24 bits.
+Un première étape consistera à implémenter cette vérification avec seulement les codes 16 couleurs ... et à documenter l'utilisation des variables !
+
+Diapo 1 (schema)
+Ikhal,
+L'interface graphique d'ikhal exploite urwid, une bibliothèque sous la licence GNU Lesser General Public License.
+Urwid gère également les couleurs, du monochrome au 24 bits.
+ikhal utilise les dénominations 16 couleurs avec urwid. 
+Urwid se réfère au fichier de configuraiton du terminal de l'utilisateur et affiche les couleurs correspondantes.
+
+Diapo 2 (exemples)
+Ce fonctionnement entraine parfois des comportements non souhaités lors de  l'affichage.
+Certaines configurations de couleurs rendent une partie de l'interface difficiles à lire voire illisibles.
+
+
+
+Les couleurs. 
+Ikhal exploite urwid, un Console user interface.
+Celui-ci peut gérer les couleurs suivant plusieurs modes.
+Un mode  16 couleur,un mode  88, un mode 256 ou un mode 24-bits. 
+khal a fait le choix de n'utiliser que les modes 16 couleurs et 256 couleurs.
+
+Le mode 256 couleur a l'avantage de se baser sur une palette standards. Urwid affiche la couleur demandée.
+Le mode 16 couleurs est plus facile à utiliser car les couleurs sont nommées. 
+Il a par contre l'inconvénient de provoquer une gestion des couleurs plus inconstante 
+En effet dans ce mode urwdi se base sur la palette de couleurs du terminal, qui varie suivant les configurations. 
+Cette inconstance est la cause des issues #395 et #633 , ouvertes du fait de l'illisibilité partielle de ikhal.
+
+Le réglage des couleurs
+
+Les utilisateurs de ikhal peuvent choisir entredeux themes de couleurs differents.  "dark" et "light". 
+Il leur suffit de renseigner leur fichier de configuration.
+Ce fonctionnement ne donne pas entièrement satisfaction pour plusieurs raisons.
+
+Premièrement  il n'existe que deux themes différents. 
+Deuxièmement ces themes exploitent chacun 27 paramètres qui correspondent aux zones à colorer dans ikhal.
+Leur nombre rends la modificaiton d'un theme laborieuse.
+Dans l'issue #705 le mainteneur principal évoque l'intéret d'une thème supplémentaire,
+ d'un enrichissement de la configuration de l'utilisateur 
+ et/ou d'une documentation enrichie pour aider à la maintenance.
+
+La proposition de khalzone est d'enregistrer un nouveau thème dont les paramètre seraient modifiable par l'utilisateur via le fichier de configuration.
+les 27 paramètres seront réduits à 4 dans le fichier de configuration. 
+L'utilisateur aura moins de choix mais pourra exploiter  cette nouvelle fonctionnalité facilement.
+
+
+Cumul de petit point durs 
+Un des points dur rencontré a plus été un cumul de petites difficultés qui devenait un grand problème qu'un grand problème monobloc. Entre l'anglais, l'inconfort de la découverte de la structure du programme, l'aisance du langage de programmation  et l'historique des issues à remonter pour bien comprendre le souhait du mainteneur qui n'a pas la disponibilité de décrire longuement des demandes qui lui semblent simples.
+
+modifications qui découlent d'un changement:
+
+    écriture des tests associés
+
+    ...
+
+
+Projet relativement peu maintenu au début (temps de review un peu long)
+
+Difficultés
+
+Techniques
+
+Autres
+
+Nouvelles connaissances grâce au projet
+
+Techniques
+
+Git
+
+    perfectionnement de l'utilisation de git (git bisect, git log, git reflog...)
+
+
+Python
+
+    Outils de debug avec pudb
+
+    Découvertes d'outils / bibliothèque python (datetime, click, configobj, 
+
+    Compréhension approfondie des décorateurs
+
+    Meilleure compréhension de la pratique des tests unitaires
+
+    Découverte des outlils d'intégration continue, utilisés pour les tests (tox, travis,...)
+
+
+khal.spec :
+    
+    L'ajout de données implique de préciser le type de données.
+
+    variable = type(donnée)
+
+    Les types de données sont les suivantes
+
+
+
+

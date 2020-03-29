@@ -1,0 +1,65 @@
+Soutenance Khal Flo
+
+Support définitif en cours : https://github.com/Khalzone/Rapport
+
+
+Blabla  Florian
+
+Diapo 1 khal > ikhal
+Khal peut donc également fonctionner en mode graphique, plus précisément en Interface par Terminal, un TUI, terminal-based user interface.
+La gestion des couleurs de cette interface pose parfois problème d'ou des issues et notemment l'issue 705 déposée par le mainteneur.
+Nous allons étudier brièvement le fonctionnement de la gestion des couleurs du mode graphique d'Ikhal et expliquer pourquoi le mainteneur a lui-même déposé une issue.
+
+Diapo 2 Khal > urwid > ikhal
+Pour afficher l'interface graphique et les couleurs khal fait appel à urwid, une librairie python sous licence LGPL.
+
+Diapo 3 fleche khal > urwid
+La gestion des couleurs passe par la transmission de khal à Urwid de codes 16 couleurs.
+
+Diapo 4 khal - vdirsyncer
+Actuellement La modification des couleurs n'est pas possible sans modifier le code source de khal
+... Alors que la gestion des couleurs de calendriers est possible via la configuration de Vdrisyncer.
+C'est un premier souhait exprimé dans l'issue #705 et qui vient de l'issue -plus ancienne - #395.
+
+Diapo 5 fichier de conf colors.py et khal.spec
+Pour ce faire nous allons nous interresser à la gestion des couleurs au sein de khal.
+Actuellement les thèmes et les couleurs sont codées en dur dans les fichiers khal.spec et colors.py.
+
+Diapo 6  issue #633  
+Cela n'empèche pas des comportements variables voire non désirés. L'issue #633 signale également des inconstances dans l'affichage des couleurs. 
+En effet c'est dut au fait que chaque utilisateur a la main sur sa propre colorimétrie de terminal,
+
+Diapos 7 et 8
+Voici deux affichages différents avec une même installation de khal. C'est dut aux modifications de l'environnement graphique utilisateur
+
+
+Diapo 9 urwid - réglages
+Ceci est dut à la gestion des codes 16 couleurs par urwid.
+Celui-ci se réfère aux réglages de la configuration de  l'utilisateur pour afficher les couleurs.
+
+Diapo 10 (256 couleurs)
+Une solution serait de passer des codes 256 couleurs à urwid qui alors affiche directement les couleurs mais la compatibilité avec les configurations 16 couleurs serait perdue.
+khal sait gérer ces codes
+
+Diapo 11 dictionnaire
+L'execution de khal se contruit autour d'un dictionnaire qui contient ent autres les informations de configuration de l'utilisateur et de vdisyncer.
+
+Diapo 12 dico > khal
+Actuellement le dictionnaire se réfère au fichier khal.spec 
+
+Diapo 13 dico > colors.py
+Lorsque le dictionnaire connait le nom du thème il se réfère au fichier colors.py pour récupérer les noms et les variables des variables de couleur.
+
+Dico 14 khal issue en attente
+Avec l'issue #705 la gestion du theme de couleur reprend la philosophie actuelle appliquée avec la configuration de vdirsyncer.
+
+L'amélioration possible après l'issue #705 évoquée par le mainteneur est la définition des couleurs par le fichier de configuration.
+Cet fonctionnalité qui est presque similaire à la récupération du nom du thème requiert toutefois une démarche différente en ce qui concerne la vérification des données entrées par l'utilisateur.
+Avec le thème les valeurs acceptées par la méthode de vérification sont codées en dur mais c'est difficilement envisageable avec leur contenu car chaque thème renseigne 30 tuples de 2 à 3 valeurs.  
+Pouvant prendre des  valeurs de code 16 couleur, 256 couleurs voire 24 bits.
+Un première étape consistera à implémenter cette vérification avec seulement les codes 16 couleurs ... et à documenter l'utilisation des variables !
+
+
+
+
+
